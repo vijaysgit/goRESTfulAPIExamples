@@ -13,18 +13,37 @@ import (
 	"os"
 	"strings"
 	"time"
+	"flag"
 )
+
+var dbhost 		= flag.String("dbhost", "localhost", "The mysql hostname/ip address.")
+var dbport *int = flag.Int("dbport", 3306, "The mysql port number.")
+var dbuser 		= flag.String("dbuser", "root", "The mysql username to access the database.")
+var dbpass 		= flag.String("dbpass", "root", "The mysql password to access the database.")
+var dbname 		= flag.String("dbname", "currencydb", "The mysql database name.")
+var debug *bool = flag.Bool("debug", false, "Print extra debugging info.")
+
 
 func insertToDB(allCurrencies map[string]interface{}, curTimestamp int64) {
 
 		// Convert the timestamp
 		timeStamp := time.Unix(curTimestamp, 0)
-	
-		// Open the database
-		db, err := sql.Open("mysql", "root:root@/currencydb?charset=utf8")
-		checkError(err)
-		defer db.Close()
 
+
+		// Construct the database connection using a string
+		connectString := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s", *dbuser, *dbpass, *dbhost, *dbport, *dbname)
+		if *debug {
+			fmt.Printf("connectString:%s\n", connectString)
+		}
+
+		// Open the database
+		db, err := sql.Open("mysql", connectString)
+		defer db.Close()
+		if err != nil {
+			fmt.Println("Database connection failed", err)
+		}
+	
+		
     	// Construct the SQL insert query using a string and interface 
 		sqlString := "INSERT INTO currencyTable(timeStamp, curCode, curValue) VALUES "
 		sqlValues := []interface{}{}

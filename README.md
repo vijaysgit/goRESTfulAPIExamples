@@ -2,8 +2,7 @@
 ====================
 
 
-Install Go
-Install MySQL
+Install Go , MySQL
 
 # Installation
 
@@ -15,7 +14,7 @@ Note: A valid MySQL user account is required. Create a database "currencydb" and
 
 	      mysql -u user -p password < gocurrencydb.sql
 
-        cd goRESTfulAPIExamples
+	      cd goRESTfulAPIExamples
         
 
 Run the programs in the following order:

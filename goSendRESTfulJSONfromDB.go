@@ -10,7 +10,7 @@ import (
 	"fmt"
 	"net/http"
 	"flag"
-	_ "mysql-master"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 var dbhost 		= flag.String("dbhost", "localhost", "The mysql hostname/ip address.")

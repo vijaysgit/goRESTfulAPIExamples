@@ -9,7 +9,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	_ "mysql-master"
+	_ "github.com/go-sql-driver/mysql"
 	"os"
 	"strings"
 	"time"

@@ -22,10 +22,6 @@ USE `currencydb`;
 -- Table structure for table `currencyTable`
 --
 
-DROP TABLE IF EXISTS `currencyTable`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-
 CREATE TABLE `currencyTable` (
   `timeStamp` datetime NOT NULL,
   `curCode` varchar(5) DEFAULT NULL,
